@@ -6,7 +6,8 @@
                 <th>Prefix</th>
                 <th>Project</th>
                 <th>Domain</th>
-                <th colspan="2">Symlinks</th>
+                <th>Symlinks</th>
+                <th colspan="2">Environment</th>
             </tr>
             </thead>
             <tbody>
@@ -15,7 +16,8 @@
                     <td>{{ vHost.prefix }}</td>
                     <td>{{ vHost.project }}</td>
                     <td>{{ vHost.domain }}</td>
-                    <td>{{ vHost.symlinks ? 'Yes':'No' }}</td>
+                    <td>{{ vHost.symlinks ? 'Yes':'No' }}
+                    <td>{{ vHost.development ? 'Dev':'Prod' }}</td>
                     <td class="text-right">
                         <a href="{{ path('vhost_show', {'id': vHost.id}) }}" class="btn btn-default">
                             <i class="mdi mdi-file"></i>

@@ -25,6 +25,11 @@
         {{ form_label(form.symlinks) }}
     </div>
 
+    <div class="checkbox">
+        {{ form_widget(form.development) }}
+        {{ form_label(form.development) }}
+    </div>
+
     {{ form_widget(form.save, { 'attr': {'class': 'btn btn-default'} } ) }}
     {{ form_end(form) }}
 </div>

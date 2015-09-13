@@ -16,6 +16,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Console\ApacheCommands;
 use AppBundle\Entity\VHost;
 use AppBundle\FileSystem\ApacheVHostConfig;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -52,8 +53,13 @@ class BaseController extends Controller
             ->add('project', 'text', array('required' => true))
             ->add('domain', 'text', array('required' => false))
             ->add('symlinks', 'checkbox', array(
-                'label'    => 'Use Symlinks?',
-                'required' => false
+                    'label' => 'Use Symlinks?',
+                    'required' => false
+                )
+            )
+            ->add('development', 'checkbox', array(
+                    'label' => 'Development Environment?',
+                    'required' => false
                 )
             )
             ->add('save', 'submit', array('label' => 'Create VHost'))
@@ -72,6 +78,8 @@ class BaseController extends Controller
 
             if (0 == count($results)) {
                 $this->newConfig($vHost);
+
+                ApacheCommands::restart();
 
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($vHost);
@@ -99,6 +107,8 @@ class BaseController extends Controller
         $configHandler = new ApacheVHostConfig();
         $configHandler->removeConfig($vHost, $rootdir);
 
+        ApacheCommands::restart();
+
         $em = $this->getDoctrine()->getManager();
         $em->remove($vHost);
         $em->flush();
@@ -116,6 +126,8 @@ class BaseController extends Controller
     public function createVHostAction(VHost $vHost)
     {
         $this->newConfig($vHost);
+
+        ApacheCommands::restart();
 
         return $this->redirect($this->generateUrl('vhost_home'));
     }

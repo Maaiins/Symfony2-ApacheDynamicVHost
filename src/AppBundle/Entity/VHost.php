@@ -47,9 +47,9 @@ class VHost
      *
      * @Assert\Type("string")
      *
-     * @ORM\Column(name="prefix", type="string", length=255)
+     * @ORM\Column(name="prefix", type="string", length=255, nullable=true)
      */
-    private $prefix;
+    private $prefix = null;
 
     /**
      * @var String
@@ -66,18 +66,27 @@ class VHost
      *
      * @Assert\Type("string")
      *
-     * @ORM\Column(name="domain", type="string", length=255)
+     * @ORM\Column(name="domain", type="string", length=255, nullable=true)
      */
-    private $domain;
+    private $domain = null;
 
     /**
      * @var Boolean
      *
      * @Assert\Type("boolean")
      *
-     * @ORM\Column(name="symlinks", type="boolean")
+     * @ORM\Column(name="symlinks", type="boolean", nullable=true)
      */
     private $symlinks = false;
+
+    /**
+     * @var Boolean
+     *
+     * @Assert\Type("boolean")
+     *
+     * @ORM\Column(name="development", type="boolean", nullable=true)
+     */
+    private $development = false;
 
     /**
      * @return int
@@ -157,6 +166,22 @@ class VHost
     public function setSymlinks($symlinks)
     {
         $this->symlinks = $symlinks;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isDevelopment()
+    {
+        return $this->development;
+    }
+
+    /**
+     * @param boolean $development
+     */
+    public function setDevelopment($development)
+    {
+        $this->development = $development;
     }
 
     /**
