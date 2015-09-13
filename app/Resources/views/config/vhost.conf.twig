@@ -1,0 +1,22 @@
+<VirtualHost *:80>
+    ServerName {% if vHost.prefix|length > 0 %}{{ vHost.prefix }}.{% endif %}{{ vHost.project }}
+    ServerAlias {% if vHost.prefix|length > 0 %}{{ vHost.prefix }}.{% endif %}{{ vHost.project }}{% if vHost.domain|length > 0 %}.{{ vHost.domain }}{% endif %}
+
+    DocumentRoot {{ apache_document_root }}/{{ vHost.project }}/web
+
+    <Directory {{ apache_document_root }}/{{ vHost.project }}/web>
+        AllowOverride All
+        Order Allow,Deny
+        Allow from All
+    </Directory>
+
+    {% if vHost.symlinks %}
+
+    <Directory {{ apache_document_root }}/{{ vHost.project }}>
+        Options FollowSymlinks
+    </Directory>
+    {% endif %}
+
+    ErrorLog {{ apache_log_dir }}/{% if vHost.prefix|length > 0 %}{{ vHost.prefix }}_{% endif %}{{ vHost.project }}{% if vHost.domain|length > 0 %}_{{ vHost.domain }}{% endif %}_error.log
+    CustomLog {{ apache_log_dir }}/{% if vHost.prefix|length > 0 %}{{ vHost.prefix }}_{% endif %}{{ vHost.project }}{% if vHost.domain|length > 0 %}_{{ vHost.domain }}{% endif %}_access.log combined
+</VirtualHost>

@@ -1,0 +1,35 @@
+{% if vHosts|length > 0 %}
+    <div class="container-fluid">
+        <table class="table table-striped table-hover ">
+            <thead>
+            <tr>
+                <th>Prefix</th>
+                <th>Project</th>
+                <th>Domain</th>
+                <th colspan="2">Symlinks</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for vHost in vHosts %}
+                <tr>
+                    <td>{{ vHost.prefix }}</td>
+                    <td>{{ vHost.project }}</td>
+                    <td>{{ vHost.domain }}</td>
+                    <td>{{ vHost.symlinks ? 'Yes':'No' }}</td>
+                    <td class="text-right">
+                        <a href="{{ path('vhost_show', {'id': vHost.id}) }}" class="btn btn-default">
+                            <i class="mdi mdi-file"></i>
+                        </a>
+                        <a href="{{ path('vhost_create', {'id': vHost.id}) }}" class="btn btn-warning">
+                            <i class="mdi mdi-plus"></i>
+                        </a>
+                        <a href="{{ path('vhost_remove', {'id': vHost.id}) }}" class="btn btn-danger">
+                            <i class="mdi mdi-delete-variant"></i>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endif %}

@@ -1,0 +1,8 @@
+{% block javascripts %}
+    {% javascripts
+    'js/jquery.min.js'
+    'js/bootstrap.min.js'
+    output='js/app.js'%}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

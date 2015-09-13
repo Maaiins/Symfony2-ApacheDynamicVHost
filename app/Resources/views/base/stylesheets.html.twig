@@ -1,0 +1,10 @@
+{% block stylesheets %}
+    {% stylesheets
+    'css/bootstrap.min.css'
+    'css/materialdesignicons.min.css'
+    'css/materialdesignicons-bootstrap.css'
+    filter='cssrewrite'
+    output='css/app.css'%}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}

@@ -1,0 +1,30 @@
+<div class="container-fluid">
+    {{ form_start(form, { 'attr': {'class': 'form-inline'} }) }}
+    {{ form_errors(form) }}
+
+    <div class="form-group">
+        {{ form_label(form.prefix, label|default(null), { 'label_attr': {'class': 'sr-only'} } ) }}
+        {{ form_errors(form.prefix) }}
+        {{ form_widget(form.prefix, { 'attr': {'class': 'form-control', 'placeholder': 'Prefix'} } ) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.project, label|default(null), { 'label_attr': {'class': 'sr-only'} } ) }}
+        {{ form_errors(form.project) }}
+        {{ form_widget(form.project, { 'attr': {'class': 'form-control', 'placeholder': 'Project'} } ) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.domain, label|default(null), { 'label_attr': {'class': 'sr-only'} } ) }}
+        {{ form_errors(form.domain) }}
+        {{ form_widget(form.domain, { 'attr': {'class': 'form-control', 'placeholder': 'Domain'} } ) }}
+    </div>
+
+    <div class="checkbox">
+        {{ form_widget(form.symlinks) }}
+        {{ form_label(form.symlinks) }}
+    </div>
+
+    {{ form_widget(form.save, { 'attr': {'class': 'btn btn-default'} } ) }}
+    {{ form_end(form) }}
+</div>
