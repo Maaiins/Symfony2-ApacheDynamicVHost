@@ -16,6 +16,8 @@
 
 namespace AppBundle\Console;
 
+use AppBundle\FileSystem\ApacheRestartHelper;
+
 /**
  * Class ApacheCommands
  *
@@ -29,6 +31,7 @@ class ApacheCommands
 {
     public static function restart()
     {
-        exec('/sbin/service apache2 restart');
+        $apacheRestartHelper = new ApacheRestartHelper();
+        $apacheRestartHelper->writeConfig();
     }
 }

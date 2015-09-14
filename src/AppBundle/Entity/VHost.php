@@ -203,4 +203,24 @@ class VHost
 
         return $prefix . $this->project . $suffix . '.conf';
     }
+
+    /**
+     * Get symlinks
+     *
+     * @return boolean 
+     */
+    public function getSymlinks()
+    {
+        return $this->symlinks;
+    }
+
+    /**
+     * Get development
+     *
+     * @return boolean 
+     */
+    public function getDevelopment()
+    {
+        return $this->development;
+    }
 }

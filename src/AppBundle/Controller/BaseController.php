@@ -158,6 +158,32 @@ class BaseController extends Controller
     }
 
     /**
+     * @Route(path="/hosts/{id}", requirements={"id": "\d+"}, name="vhost_hosts")
+     * @ParamConverter("vHost", class="AppBundle:VHost", options={"id" = "id"})
+     *
+     * @param VHost $vHost
+     * @return Response
+     */
+    public function showVHostHostsAction(VHost $vHost)
+    {
+        $content = $this->renderView(
+            ':config:windows.hosts.twig',
+            array(
+                'vHost' => $vHost,
+                'ip' => $_SERVER['SERVER_ADDR']
+            )
+        );
+
+        $response = new Response();
+
+        $response->setContent($content);
+        $response->setStatusCode(Response::HTTP_OK);
+        $response->headers->set('Content-Type', 'text');
+
+        return $response;
+    }
+
+    /**
      * @return \AppBundle\Entity\VHost[]|array
      */
     private function getVHosts()

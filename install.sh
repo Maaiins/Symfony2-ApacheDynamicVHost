@@ -4,7 +4,6 @@ DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
 # Directories
 mkdir ${DIR}/app/Resources/vHosts
-
 chown -R www-data:www-data ${DIR}/app/Resources/vHosts/
 
 
@@ -23,10 +22,3 @@ composer install
 cp /var/www/ApacheDynamicVHost/dynamic-host.conf /etc/apache2/sites-available/000-default.conf
 
 service apache2 restart
-
-
-# Sudo
-apt-get install sudo -y
-
-echo 'Cmnd_Alias RESTART_APACHE = /sbin/service apache2 restart' >> /etc/sudoers
-echo 'www-data ALL=NOPASSWD: RESTART_APACHE' >> /etc/sudoers

@@ -19,13 +19,19 @@
                     <td>{{ vHost.symlinks ? 'Yes':'No' }}
                     <td>{{ vHost.development ? 'Dev':'Prod' }}</td>
                     <td class="text-right">
-                        <a href="{{ path('vhost_show', {'id': vHost.id}) }}" class="btn btn-default">
+                        <a href="http://{{ vHost.prefix ? vHost.prefix ~ '.':'' }}{{ vHost.project }}{{ vHost.domain ? '.' ~ vHost.domain:'' }}" target="_blank" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Visit project">
+                            <i class="mdi mdi-earth"></i>
+                        </a>
+                        <a href="{{ path('vhost_hosts', {'id': vHost.id}) }}" target="_blank" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="View Windows host file">
+                            <i class="mdi mdi-desktop-tower"></i>
+                        </a>
+                        <a href="{{ path('vhost_show', {'id': vHost.id}) }}" target="_blank" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="View VHost config">
                             <i class="mdi mdi-file"></i>
                         </a>
-                        <a href="{{ path('vhost_create', {'id': vHost.id}) }}" class="btn btn-warning">
+                        <a href="{{ path('vhost_create', {'id': vHost.id}) }}" class="btn btn-warning" data-toggle="tooltip" data-placement="bottom" title="Create VHost Config">
                             <i class="mdi mdi-plus"></i>
                         </a>
-                        <a href="{{ path('vhost_remove', {'id': vHost.id}) }}" class="btn btn-danger">
+                        <a href="{{ path('vhost_remove', {'id': vHost.id}) }}" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Remove VHost">
                             <i class="mdi mdi-delete-variant"></i>
                         </a>
                     </td>
