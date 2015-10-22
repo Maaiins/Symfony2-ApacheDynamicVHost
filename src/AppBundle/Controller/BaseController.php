@@ -223,4 +223,20 @@ class BaseController extends Controller
         $configHandler = new ApacheVHostConfig();
         $configHandler->writeConfig($vHost, $content, $rootdir);
     }
+
+    /**
+     * @Route("/login", name="login")
+     * @Template("::login.html.twig")
+     *
+     * @return array
+     */
+    public function loginAction()
+    {
+        $authenticationUtils = $this->get('security.authentication_utils');
+
+        return array(
+            'error' => $authenticationUtils->getLastAuthenticationError(),
+            'username' => $authenticationUtils->getLastUsername()
+        );
+    }
 }

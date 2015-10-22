@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="well col-xs-6 col-md-4 col-xs-offset-3 col-md-offset-4">
+        <form class="form-horizontal" action="{{ path('validate') }}" method="post">
+            <fieldset>
+                <legend>Login</legend>
+                {% if error %}
+                    <div class="alert alert-dismissible alert-danger">
+                        <a href="#" class="alert-close pull-right" data-dismiss="alert">
+                            <i class="mdi mdi-close-circle"></i>
+                        </a>
+                        <strong>Oh snap!</strong><br>
+                        {{ error.message }}
+                    </div>
+                {% endif %}
+                <div class="form-group">
+                    <label for="username" class="col-xs-5 col-sm-3 control-label">Name:</label>
+                    <div class="col-xs-7 col-sm-9">
+                        <input type="text" class="form-control" id="username" name="_username" value="{{ username }}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="col-xs-5 col-md-3 control-label">Password:</label>
+                    <div class="col-xs-7 col-md-9">
+                        <input type="password" class="form-control" id="password" name="_password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-7 col-md-9 col-xs-offset-5 col-md-offset-3">
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+{% endblock %}
