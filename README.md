@@ -2,11 +2,10 @@ ApacheDynamicVHost
 =========
 
 ```bash
-cd /var/www/
-git clone https://github.com/Maaiins/Symfony-ApacheDynamicVHost.git ApacheDynamicVHost
+$ git clone https://github.com/Maaiins/Symfony-ApacheDynamicVHost.git ApacheDynamicVHost
 
-cd /var/www/ApacheDynamicVHost
-chmod 777 ./install.sh
+$ cd ./ApacheDynamicVHost/
+$ chmod 775 ./install.sh
 
-./install.sh
+$ ./install.sh
 ```
