@@ -3,18 +3,20 @@
         <table class="table table-striped table-hover ">
             <thead>
             <tr>
+                <th>Project</th>
                 <th>Symlinks</th>
                 <th>Environment</th>
-                <th>Config files</th>
-                <th>Recreate</th>
-                <th>Remove</th>
+                <th class="text-center">Hosts file</th>
+                <th class="text-center">vHost file</th>
+                <th class="text-center">Recreate</th>
+                <th class="text-right">Remove</th>
             </tr>
             </thead>
             <tbody>
             {% for vHost in vHosts %}
                 <tr>
                     <td>
-                        <a href="http://{{ vHost.prefix ? vHost.prefix ~ '.':'' }}{{ vHost.project }}{{ vHost.domain ? '.' ~ vHost.domain:'' }}" target="_blank" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Visit project">
+                        <a href="http://{{ vHost.prefix ? vHost.prefix ~ '.':'' }}{{ vHost.project }}{{ vHost.domain ? '.' ~ vHost.domain:'' }}" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Visit project">
                             {{ vHost.prefix ? vHost.prefix ~ '.':'' }}{{ vHost.project }}{{ vHost.domain ? '.' ~ vHost.domain:'' }}
                         </a>
                     </td>
@@ -24,6 +26,8 @@
                         <a href="{{ path('vhost_hosts', {'id': vHost.id}) }}" target="_blank" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="View Windows host file">
                             <i class="mdi mdi-desktop-tower"></i>
                         </a>
+                    </td>
+                    <td class="text-center">
                         <a href="{{ path('vhost_show', {'id': vHost.id}) }}" target="_blank" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="View VHost config">
                             <i class="mdi mdi-file"></i>
                         </a>
